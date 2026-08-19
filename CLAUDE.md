@@ -37,6 +37,10 @@ architettura)
 
 ## Regole generali
 - Non inventare mai contenuti/testi/dati: chiedere sempre se mancano informazioni reali
+- **Sito completamente responsive**: ogni pagina, componente e layout deve funzionare
+  correttamente su mobile, tablet e desktop. Priorità mobile-first nello sviluppo
+  Tailwind (breakpoint standard: sm/md/lg/xl). Nessuna pagina va considerata
+  completa finché non è verificata su almeno 3 dimensioni di schermo
 - Componenti riutilizzabili per pagine simili (format, progetti, halloween annuali)
 - Design system definito separatamente con Claude Design → tradurre in componenti
   Tailwind quando disponibile
