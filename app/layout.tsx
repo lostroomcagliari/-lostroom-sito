@@ -5,12 +5,14 @@ const bodoni = Bodoni_Moda({
   subsets: ['latin'],
   variable: '--font-bodoni',
   weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
 })
 
 const garamond = EB_Garamond({
   subsets: ['latin'],
   variable: '--font-garamond',
   weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
 })
 
 const imfell = IM_Fell_English_SC({

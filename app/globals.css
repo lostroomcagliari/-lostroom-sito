@@ -30,27 +30,50 @@
   --tracking-kicker: 0.24em;
   --tracking-label: 0.18em;
 }
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Il sito non ha un tema chiaro/scuro alternabile: la palette ink/paper è
+   fissa e definita dal design system, non da prefers-color-scheme. */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink-900);
+  color: var(--color-paper-100);
+  font-family: var(--font-body);
+}
+
+/* ── Movimento — solo Sipario, Dettatura, Oggetto fisico (docs/design-system.md) ── */
+
+@keyframes lr-sipario {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0% 0); }
+}
+
+@keyframes lr-dictate {
+  from { opacity: 0; transform: translateY(0.9rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-sipario {
+  animation: lr-sipario 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@utility animate-dictate {
+  animation: lr-dictate 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Doppio alone morbido su inchiostro — texture per sfondi scuri, mai un
+   gradient generico: due aloni discreti in luce ottone, quasi impercettibili. */
+@utility bg-ink-halo {
+  background-image:
+    radial-gradient(60% 50% at 18% 0%, rgb(169 126 60 / 0.10), transparent 65%),
+    radial-gradient(50% 45% at 100% 100%, rgb(169 126 60 / 0.07), transparent 70%);
+}
+
+/* Righe carta — texture per sfondi chiari (paper), 4px, 5% di opacità. */
+@utility bg-paper-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgb(20 17 15 / 0.05) 0,
+    rgb(20 17 15 / 0.05) 1px,
+    transparent 1px,
+    transparent 4px
+  );
 }
