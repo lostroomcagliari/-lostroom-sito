@@ -46,9 +46,12 @@ export default function Halloween() {
           </div>
         </Reveal>
 
-        <div className="relative aspect-[4/5] min-h-[260px]">
-          <ImagePlaceholder label="edizione Halloween" className="absolute inset-0 h-full w-full" />
-        </div>
+        <ImagePlaceholder
+          label="Edizione Halloween Lost Room, sala d'epoca affrescata gremita di ospiti in costume"
+          src="/foto/halloween.png"
+          aspect="4 / 5"
+          className="min-h-[260px]"
+        />
       </div>
     </section>
   )
