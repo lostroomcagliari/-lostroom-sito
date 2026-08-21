@@ -96,8 +96,6 @@ export default function Verticals() {
               un&apos;organizzazione.
             </p>
             <p className="mt-3 text-pretty text-base text-paper-100/85">
-              Mettere venti colleghi nella stessa stanza non crea automaticamente un team.
-              <br />
               Dare loro un problema da risolvere, informazioni incomplete, poco tempo, obiettivi comuni e la
               necessità di parlarsi sul serio può invece produrre risultati interessanti.
             </p>
