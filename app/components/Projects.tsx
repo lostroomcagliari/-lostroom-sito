@@ -27,6 +27,26 @@ const PROJECTS: Project[] = [
 const FEATURED_PROJECT: Project = { index: '04', aspect: '16 / 10', photoLabel: 'progetto 04' }
 
 /**
+ * Doppia cornice brass — stesso linguaggio dei ritratti in AboutUs.tsx:
+ * bordo esterno (con margine) + bordo interno via ImagePlaceholder
+ * `framed`, non un trattamento nuovo. Estratto qui perché usato 2 volte
+ * (staircase + Progetto 04) e per non farli divergere in futuro.
+ * Il badge "Progetto 0X" resta pieno (leggibile su qualunque foto reale
+ * arrivi in seguito, non solo sul placeholder scuro) ma prende un filo di
+ * bordo brass per parlare la stessa lingua della cornice.
+ */
+function ProjectPhoto({ project }: { project: Project }) {
+  return (
+    <div className={`relative border border-brass-500/60 p-2 ${project.matted ? 'bg-paper-200' : ''}`}>
+      <ImagePlaceholder label={project.photoLabel} aspect={project.aspect} framed />
+      <div className="absolute top-2 left-2 border border-brass-500/50 bg-ink-900 px-3 py-1.5 font-almanac text-[11px] tracking-label text-paper-100">
+        Progetto {project.index}
+      </div>
+    </div>
+  )
+}
+
+/**
  * Composizione asimmetrica (non griglia uniforme), coerente con
  * FormatSection: proporzioni e leggero offset verticale diversi per scheda.
  */
@@ -78,15 +98,7 @@ export default function Projects() {
         <div className="mt-12 grid gap-8 sm:grid-cols-3 sm:gap-6">
           {PROJECTS.map((project, i) => (
             <div key={project.index} className={i === 1 ? 'sm:mt-6' : i === 2 ? 'sm:mt-12' : ''}>
-              <div className={`relative ${project.matted ? 'bg-paper-200 p-3' : ''}`}>
-                {project.matted && <div className="pointer-events-none absolute inset-0 border border-ink-900/30" />}
-                <div className="relative">
-                  <ImagePlaceholder label={project.photoLabel} aspect={project.aspect} />
-                  <div className="absolute top-0 left-0 bg-ink-900 px-3 py-1.5 font-almanac text-[11px] tracking-label text-paper-100">
-                    Progetto {project.index}
-                  </div>
-                </div>
-              </div>
+              <ProjectPhoto project={project} />
               <h3 className="mt-4 font-display text-[clamp(1.25rem,1rem+0.6vw,1.625rem)] text-ink-900">
                 Titolo progetto
               </h3>
@@ -109,12 +121,7 @@ export default function Projects() {
             mt-14/16 dà aria sufficiente a schiarire anche l'offset di
             "Progetto 03" (sm:mt-12, il più basso dei tre). */}
         <Reveal delayMs={360} className="mt-14 grid gap-6 border-t border-ink-900/15 pt-12 sm:grid-cols-2 sm:gap-10 lg:mt-16 lg:gap-16">
-          <div className="relative">
-            <ImagePlaceholder label={FEATURED_PROJECT.photoLabel} aspect={FEATURED_PROJECT.aspect} />
-            <div className="absolute top-0 left-0 bg-ink-900 px-3 py-1.5 font-almanac text-[11px] tracking-label text-paper-100">
-              Progetto {FEATURED_PROJECT.index}
-            </div>
-          </div>
+          <ProjectPhoto project={FEATURED_PROJECT} />
           <div className="flex flex-col justify-center">
             <h3 className="font-display text-[clamp(1.25rem,1rem+0.6vw,1.625rem)] text-ink-900">Titolo progetto</h3>
             <div className="mt-1 font-almanac text-[12px] tracking-label text-paper-400">
