@@ -4,7 +4,9 @@ import FramedKicker from './FramedKicker'
 import ImagePlaceholder from './ImagePlaceholder'
 import Reveal from './Reveal'
 
-const EDITIONS = ['2026', '2025', '2024', '2023', '2022']
+// 2020 e 2021 mancano di proposito (niente eventi durante la pandemia): il
+// salto nella sequenza numerica basta da solo, nessuna nota a corredo.
+const EDITIONS = ['2026', '2025', '2024', '2023', '2022', '2019']
 
 /** Appuntamento annuale con Halloween + archivio edizioni 2022–2026. */
 export default function Halloween() {
@@ -24,11 +26,14 @@ export default function Halloween() {
             Noi cominciamo a pensare ad Halloween con un anticipo francamente poco salutare.
           </p>
           <p className="mt-3 max-w-[46ch] text-pretty text-body text-paper-100/80">
-            Ogni anno costruiamo una nuova esperienza.
+            Ogni anno costruiamo una nuova esperienza in una location iconica che viene svelata all&apos;ultimo.
             <br />
             Ogni anno promettiamo a noi stessi di organizzare qualcosa di più semplice.
             <br />
-            <em className="text-brass-500 italic">Finora non ha funzionato.</em>
+            <em className="text-seal-600 italic">Finora non ha funzionato.</em>
+            <br />
+            Ma una cosa è certa: non puoi dire di conoscerci davvero, se non hai giocato ad Halloween con noi almeno
+            una volta.
           </p>
           <Button href="#halloween" variant="primary" tone="ink" className="mt-6">
             Scopri Halloween con Lost Room
