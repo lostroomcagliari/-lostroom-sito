@@ -18,6 +18,14 @@ const PROJECTS: Project[] = [
   { index: '03', aspect: '4 / 5', photoLabel: 'progetto 03' },
 ]
 
+// Il quarto progetto non si aggiunge alla fila delle prime 3 (diventerebbe
+// una griglia 4 colonne uniforme, o lascerebbe una scheda orfana a fine
+// riga): resta a parte, in formato editoriale orizzontale — stessa anatomia
+// scheda (foto/badge/titolo/categoria/descrizione/CTA), ma è lui stesso la
+// "rottura di ritmo" rispetto allo staircase 01-02-03, non un quarto tassello
+// che ci si infila dentro.
+const FEATURED_PROJECT: Project = { index: '04', aspect: '16 / 10', photoLabel: 'progetto 04' }
+
 /**
  * Composizione asimmetrica (non griglia uniforme), coerente con
  * FormatSection: proporzioni e leggero offset verticale diversi per scheda.
@@ -95,6 +103,32 @@ export default function Projects() {
             </div>
           ))}
         </div>
+
+        {/* Progetto 04: fila a parte, orizzontale — vedi commento su
+            FEATURED_PROJECT. border-t la stacca dallo staircase sopra,
+            mt-14/16 dà aria sufficiente a schiarire anche l'offset di
+            "Progetto 03" (sm:mt-12, il più basso dei tre). */}
+        <Reveal delayMs={360} className="mt-14 grid gap-6 border-t border-ink-900/15 pt-12 sm:grid-cols-2 sm:gap-10 lg:mt-16 lg:gap-16">
+          <div className="relative">
+            <ImagePlaceholder label={FEATURED_PROJECT.photoLabel} aspect={FEATURED_PROJECT.aspect} />
+            <div className="absolute top-0 left-0 bg-ink-900 px-3 py-1.5 font-almanac text-[11px] tracking-label text-paper-100">
+              Progetto {FEATURED_PROJECT.index}
+            </div>
+          </div>
+          <div className="flex flex-col justify-center">
+            <h3 className="font-display text-[clamp(1.25rem,1rem+0.6vw,1.625rem)] text-ink-900">Titolo progetto</h3>
+            <div className="mt-1 font-almanac text-[12px] tracking-label text-paper-400">
+              Categoria · luogo · anno
+            </div>
+            <p className="mt-2 max-w-[46ch] text-base text-ink-700">Breve descrizione specifica del progetto.</p>
+            <a
+              href="#progetti"
+              className="mt-3 inline-flex items-center gap-2 self-start border-b border-brass-500/50 pb-1 font-almanac text-[13px] tracking-label text-brass-500 transition-colors duration-150 ease-out hover:border-ink-900 hover:text-ink-900"
+            >
+              Scopri il progetto
+            </a>
+          </div>
+        </Reveal>
 
         <Reveal delayMs={480}>
           <a
