@@ -111,10 +111,19 @@ export default function Projects() {
               <em className="text-brass-500 italic">Sono probabilmente quelle che ci piacciono di più.</em>
             </p>
           </Reveal>
-          {/* Frasi brevi isolate ("Ma con metodo.", "Poi arriva il gioco.")
-              come <p> a sé, non fuse con le vicine: è un effetto di ritmo
-              voluto, non un refuso di formattazione. */}
+          {/* Frasi brevi isolate ("E se facessimo…?", "Da lì...", "Ma con
+              metodo.", "Poi arriva il gioco.") come <p> a sé, non fuse con
+              le vicine: è un effetto di ritmo voluto, non un refuso di
+              formattazione. */}
           <Reveal delayMs={240} className="flex flex-col gap-3">
+            <p className="text-pretty text-body text-ink-700">
+              In questi anni abbiamo progettato esperienze dentro luoghi culturali e siti archeologici, eventi per
+              aziende e istituzioni, giochi territoriali, produzioni immersive, attività per centinaia di
+              partecipanti e strani esperimenti che inizialmente esistevano soltanto sotto forma di una frase:
+            </p>
+            <p className="font-body text-[clamp(1.3125rem,1.1rem+0.6vw,1.6875rem)] text-brass-500 italic">
+              &quot;E se facessimo…?&quot;
+            </p>
             <p className="text-pretty text-body text-ink-700">Da lì, generalmente, la situazione degenera.</p>
             <p className="text-pretty text-body text-ink-700">Ma con metodo.</p>
             <p className="text-pretty text-body text-ink-700">

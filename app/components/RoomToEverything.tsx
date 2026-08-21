@@ -100,6 +100,15 @@ export default function RoomToEverything() {
             </div>
           ))}
         </Reveal>
+
+        {/* Contrappunto ironico ai "numeroni": una nota a margine, non un
+            settimo KPI — per questo fuori dalla fascia (Reveal a parte,
+            un solo filo di testo) invece che dentro la griglia insieme
+            agli altri sei. */}
+        <Reveal delayMs={420} className="mt-6">
+          <span className="font-almanac text-[13px] tracking-kicker text-brass-500">Enigmi e jumpscare</span>
+          <p className="mt-1 text-sm text-ink-700">Non li abbiamo contati. Era meglio così.</p>
+        </Reveal>
       </div>
     </section>
   )
