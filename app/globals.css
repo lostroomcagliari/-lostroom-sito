@@ -84,6 +84,18 @@ body {
   animation: lr-filmstrip 70s linear infinite;
 }
 
+/* Tono seppia/desaturato per foto reali a colori (es. sezione Progetti):
+   uniforma foto scattate in condizioni diverse al trattamento vintage già
+   naturale in hero.png e da-una-stanza.png, senza dover ritoccare ogni
+   file a mano. Fisso, non legato a hover — grayscale alto ma non 100%
+   (resta un'ombra di colore, non un B/N piatto), sepia moderato per il
+   calore, contrast/brightness leggeri per non appiattire i dettagli fini
+   (es. i piccoli simboli nella foto di Topolino). Riusabile ovunque arrivi
+   una nuova foto reale che deve intonarsi allo stesso stile. */
+@utility filter-vintage {
+  filter: grayscale(75%) sepia(35%) contrast(1.1) brightness(0.93);
+}
+
 /* Doppio alone morbido su inchiostro — texture per sfondi scuri, mai un
    gradient generico: due aloni discreti in luce ottone, quasi impercettibili. */
 @utility bg-ink-halo {

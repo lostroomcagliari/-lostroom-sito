@@ -76,7 +76,13 @@ const FEATURED_PROJECT: Project = {
 function ProjectPhoto({ project }: { project: Project }) {
   return (
     <div className={`relative border border-brass-500/60 p-2 ${project.matted ? 'bg-paper-200' : ''}`}>
-      <ImagePlaceholder label={project.label} src={project.src} aspect={project.aspect} framed />
+      <ImagePlaceholder
+        label={project.label}
+        src={project.src}
+        aspect={project.aspect}
+        framed
+        imageClassName="filter-vintage"
+      />
     </div>
   )
 }

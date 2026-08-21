@@ -62,13 +62,13 @@ export default function AboutUs() {
               <br />
               Ci piace sentirci ancora un po&apos; bambini.
               <br />
-              Ci piacciono le mappe, le storie nelle quali qualcosa non torna, gli oggetti che sembrano provenire da
-              un altro tempo, le torce che illuminano un dettaglio nel buio e le porte che probabilmente non
-              dovremmo aprire.
+              Ci piacciono le persone, le mappe, le storie nelle quali qualcosa non torna, gli oggetti che sembrano
+              provenire da un altro tempo, le torce che illuminano un dettaglio nel buio e le porte che
+              probabilmente non dovremmo aprire.
             </p>
             <p className="text-pretty text-body text-paper-100/80">
-              Siamo due persone molte curiose, al punto da essere appassionati di tecnologia innovazione ma anche
-              profondamente innamorati di tutto quello che arriva dal passato.
+              Siamo due persone talmente curiose da essere al contempo appassionati di tecnologia e innovazione e
+              affascinati da tutto quello che arriva dal passato.
               <br />
               Per questo nei nostri giochi possono convivere tecnologia e carta, QR code e vecchi documenti,
               meccaniche nuove e storie che sembrano essere state raccontate cento anni fa.
