@@ -27,10 +27,22 @@ H1 84/44px · H2 52/34px · H3 34/26px · H4 24/21px · H5 18px (maiuscoletto) �
 - Foto: vignettatura (buio ai bordi, luce sui volti), sfocature/mosso del momento di gioco restano
 - Texture: righe carta 4px opacità 5% (sfondi chiari); doppio alone morbido su inchiostro (sfondi scuri) — MAI gradient generico
 
-## Movimento — solo questi 3, non altri
+## Movimento — Sipario, Dettatura, Oggetto fisico + Pellicola (eccezione mirata)
 1. **Sipario**: immagini si scoprono dall'alto verso il basso (clip-path, 900ms, ease-out)
-2. **Dettatura**: testo hero si scrive per righe, 120ms di ritardo tra righe
+2. **Dettatura**: testo si scrive per righe/blocchi, 120ms di ritardo tra un blocco e il successivo
 3. **Oggetto fisico**: bottoni/ticket si abbassano di 2px al click, ombra si accorcia
+4. **Pellicola**: loop orizzontale continuo, lento, indipendente dallo scroll — SOLO sulla
+   foto di transizione "Da una stanza a tutto il resto" (`RoomToEverything.tsx`,
+   `animate-filmstrip`). Non è un pattern generale: non riusarlo per altre
+   immagini/sezioni senza una ragione altrettanto specifica.
+
+Sipario e Dettatura sono usati su tutta la pagina, non solo nell'Hero:
+sotto la prima schermata scattano allo scroll-into-view (IntersectionObserver,
+`Reveal.tsx` per il testo, direttamente in `ImagePlaceholder.tsx` per le
+foto) invece che al mount, altrimenti l'effetto è già concluso quando
+l'utente ci arriva scrollando. Se il JS non parte o l'utente preferisce
+animazioni ridotte, il contenuto resta semplicemente visibile da subito —
+mai un trigger che può non scattare.
 
 ## Griglia responsive
 - Mobile (375px): 1 colonna, margini 20px, bottoni piena larghezza impilati min 48px

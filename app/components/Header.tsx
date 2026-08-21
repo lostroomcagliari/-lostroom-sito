@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Button from './Button'
 
 const NAV_LINKS = [
@@ -11,9 +12,9 @@ const NAV_LINKS = [
 ]
 
 /**
- * Nav fissa. Logo: per ora una targa-segnaposto testuale in stile
- * timbro/almanacco — il logo vero (con cornice strappata) arriva più avanti
- * e prenderà questo stesso spazio, docs/design-system.md#logo.
+ * Nav fissa. Logo: targa vera (cornice strappata su fondo inchiostro),
+ * docs/design-system.md#logo — mix-blend-screen fonde la base nera della
+ * targa con lo sfondo dell'header, lasciando emergere solo cornice e scritta.
  */
 export default function Header() {
   const [open, setOpen] = useState(false)
@@ -24,11 +25,9 @@ export default function Header() {
         <a
           href="#top"
           aria-label="Lost Room — torna all'inizio"
-          className="shrink-0 border border-brass-500/60 px-2.5 py-1.5"
+          className="block w-[52px] shrink-0 mix-blend-screen sm:w-[60px]"
         >
-          <span className="block font-almanac text-[11px] tracking-kicker text-paper-100">
-            LOST ROOM
-          </span>
+          <Image src="/brand/logo.png" alt="Lost Room" width={512} height={512} priority className="h-auto w-full" />
         </a>
 
         <nav className="ml-4 hidden items-center gap-7 lg:flex" aria-label="Sezioni principali">
