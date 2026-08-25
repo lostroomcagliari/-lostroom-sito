@@ -85,9 +85,16 @@ export default function RoomToEverything() {
           </Reveal>
         </div>
 
+        {/* Settimo elemento della griglia, non più una nota a margine
+            separata: stessa anatomia (valore + etichetta) degli altri sei,
+            unica differenza l'allineamento (centrato, non a sinistra) e
+            in più una riga di corpo testo. Il "valore" è un codice
+            decorativo senza significato — aria-hidden, non va letto da
+            uno screen reader — mentre kicker e frase sotto restano
+            contenuto vero. */}
         <Reveal
           delayMs={360}
-          className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 border-t-2 border-ink-900 border-b border-ink-900/25 py-8 sm:grid-cols-3 sm:gap-x-8 lg:grid-cols-6 lg:py-10"
+          className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 border-t-2 border-ink-900 border-b border-ink-900/25 py-8 sm:grid-cols-3 sm:gap-x-8 lg:grid-cols-7 lg:py-10"
         >
           {STATS.map((stat) => (
             <div key={stat.label}>
@@ -99,30 +106,23 @@ export default function RoomToEverything() {
               </div>
             </div>
           ))}
-        </Reveal>
-
-        {/* Contrappunto ironico ai "numeroni": una nota a margine, non un
-            settimo KPI — per questo fuori dalla fascia (Reveal a parte,
-            un solo filo di testo) invece che dentro la griglia insieme
-            agli altri sei. Sopra, un settimo numero che non c'è mai stato:
-            stessa tipografia delle statistiche ma sbiadito cifra per
-            cifra, come un timbro d'inchiostro consumato — l'idea è "il
-            conteggio esiste, solo che nessuno l'ha mai finito di leggere".
-            aria-hidden: è decorazione, una stringa senza significato non
-            va letta da uno screen reader. */}
-        <div
-          aria-hidden="true"
-          className="mt-6 text-center font-display text-[clamp(1.875rem,1.4rem+2vw,3rem)] leading-none tracking-[0.04em] text-ink-900"
-        >
-          <span className="opacity-[0.38]">4</span>
-          <span className="opacity-[0.09]">7</span>
-          <span className="opacity-[0.42]">2</span>
-          <span className="opacity-[0.05]">9</span>
-          <span className="opacity-[0.27]">1</span>
-        </div>
-        <Reveal delayMs={420} className="mt-2">
-          <span className="font-almanac text-[13px] tracking-kicker text-brass-500">Enigmi e jumpscare</span>
-          <p className="mt-1 text-sm text-ink-700">Non li abbiamo contati. Era meglio così.</p>
+          <div className="text-center">
+            {/* ✳︎ (U+2733 + variation selector U+FE0E) è lo stesso fix del
+                bug emoji-verde su iOS applicato in FramedKicker.tsx. ◈
+                prende lo stesso selettore per prudenza: è nel blocco
+                Geometric Shapes, non verificabile qui senza un device iOS
+                — il selettore non fa danno se risultasse superfluo. Ж è
+                una lettera cirillica (non un simbolo/dingbat): quei
+                blocchi non hanno una resa emoji alternativa, nessun
+                selettore necessario. */}
+            <div aria-hidden="true" className="font-display text-[clamp(1.875rem,1.4rem+2vw,3rem)] leading-none text-ink-900">
+              ◈︎✳︎7Ж3◈︎
+            </div>
+            <div className="mx-auto mt-1 max-w-[13ch] font-almanac text-[11px] leading-[1.35] tracking-[0.06em] text-paper-400">
+              Enigmi e jumpscare
+            </div>
+            <p className="mt-1 text-sm text-ink-700">Non li abbiamo contati. Era meglio così.</p>
+          </div>
         </Reveal>
       </div>
     </section>
