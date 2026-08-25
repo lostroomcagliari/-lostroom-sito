@@ -71,7 +71,12 @@ export default function Verticals() {
             </Button>
           </Reveal>
           <div className="relative">
-            <ImagePlaceholder label="Addio al nubilato Lost Room, gruppo di amiche in gioco" src="/foto/nubilato.png" aspect="4 / 3" />
+            <ImagePlaceholder
+              label="Addio al nubilato Lost Room, gruppo di amiche in gioco"
+              src="/foto/nubilato.png"
+              aspect="4 / 3"
+              imageClassName="filter-vintage"
+            />
             <div aria-hidden className="pointer-events-none absolute inset-0 border-[14px] border-velvet-700" />
           </div>
         </div>
@@ -83,6 +88,7 @@ export default function Verticals() {
               label="Team building Lost Room, colleghi al lavoro sotto pressione"
               src="/foto/team-building.png"
               aspect="5 / 4"
+              imageClassName="filter-vintage"
             />
             <div aria-hidden className="pointer-events-none absolute inset-0 border-[14px] border-velvet-700" />
           </div>

@@ -119,7 +119,13 @@ export default function FormatSection() {
             >
               <div className={format.imageSide === 'right' ? 'sm:order-2' : ''}>
                 <div className="relative">
-                  <ImagePlaceholder label={format.photoLabel} src={format.photoSrc} aspect="4 / 3" hideCaption />
+                  <ImagePlaceholder
+                    label={format.photoLabel}
+                    src={format.photoSrc}
+                    aspect="4 / 3"
+                    hideCaption
+                    imageClassName="filter-vintage"
+                  />
                   <div
                     className={`absolute bottom-0 left-0 px-3 py-1.5 font-almanac text-[11px] tracking-label ${GENRE_BADGE[format.genreColor]}`}
                   >
