@@ -70,27 +70,31 @@ export default function Verticals() {
               Scopri gli addii Lost Room
             </Button>
           </Reveal>
-          <div className="relative">
+          {/* Doppia cornice brass, stessa ricetta di ProjectPhoto in
+              Projects.tsx: sostituisce il vecchio "tappeto" velvet-700 da
+              14px per allinearsi al trattamento ormai usato su tutte le
+              altre foto reali del sito. */}
+          <div className="relative border border-brass-500/60 p-2">
             <ImagePlaceholder
               label="Addio al nubilato Lost Room, gruppo di amiche in gioco"
               src="/foto/nubilato.png"
               aspect="4 / 3"
+              framed
               imageClassName="filter-vintage"
             />
-            <div aria-hidden className="pointer-events-none absolute inset-0 border-[14px] border-velvet-700" />
           </div>
         </div>
 
         {/* Team building */}
         <div id="team-building" className="mt-14 grid items-center gap-8 sm:grid-cols-2 sm:gap-10 lg:gap-14">
-          <div className="relative sm:order-2">
+          <div className="relative border border-brass-500/60 p-2 sm:order-2">
             <ImagePlaceholder
               label="Team building Lost Room, colleghi al lavoro sotto pressione"
               src="/foto/team-building.png"
               aspect="5 / 4"
+              framed
               imageClassName="filter-vintage"
             />
-            <div aria-hidden className="pointer-events-none absolute inset-0 border-[14px] border-velvet-700" />
           </div>
           <Reveal delayMs={120} className="sm:order-1">
             <span className="font-almanac text-xs tracking-label text-paper-300">Team aziendali</span>

@@ -51,12 +51,17 @@ export default function Halloween() {
           </div>
         </Reveal>
 
-        <ImagePlaceholder
-          label="Edizione Halloween Lost Room, sala d'epoca affrescata gremita di ospiti in costume"
-          src="/foto/halloween.png"
-          aspect="4 / 5"
-          className="min-h-[260px]"
-        />
+        {/* Doppia cornice brass, stessa ricetta di ProjectPhoto in
+            Projects.tsx. */}
+        <div className="relative border border-brass-500/60 p-2">
+          <ImagePlaceholder
+            label="Edizione Halloween Lost Room, sala d'epoca affrescata gremita di ospiti in costume"
+            src="/foto/halloween.png"
+            aspect="4 / 5"
+            framed
+            className="min-h-[260px]"
+          />
+        </div>
       </div>
     </section>
   )

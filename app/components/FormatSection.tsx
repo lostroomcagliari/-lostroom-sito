@@ -118,21 +118,28 @@ export default function FormatSection() {
               }`}
             >
               <div className={format.imageSide === 'right' ? 'sm:order-2' : ''}>
-                <div className="relative">
+                {/* Doppia cornice brass, stessa ricetta di ProjectPhoto in
+                    Projects.tsx: bordo esterno (p-2) + bordo interno via
+                    ImagePlaceholder `framed`. I badge passano da bottom-0/
+                    top-0 a bottom-2/top-2 per agganciarsi al bordo reale
+                    della foto (dentro il gap del frame) invece che a
+                    quello, ora spostato, del contenitore. */}
+                <div className="relative border border-brass-500/60 p-2">
                   <ImagePlaceholder
                     label={format.photoLabel}
                     src={format.photoSrc}
                     aspect="4 / 3"
                     hideCaption
+                    framed
                     imageClassName="filter-vintage"
                   />
                   <div
-                    className={`absolute bottom-0 left-0 px-3 py-1.5 font-almanac text-[11px] tracking-label ${GENRE_BADGE[format.genreColor]}`}
+                    className={`absolute bottom-2 left-2 px-3 py-1.5 font-almanac text-[11px] tracking-label ${GENRE_BADGE[format.genreColor]}`}
                   >
                     {format.genre}
                   </div>
                   {format.tag && (
-                    <div className="absolute top-0 right-0 border border-brass-500/60 bg-ink-900 px-3 py-1.5 font-almanac text-[11px] tracking-label text-paper-100">
+                    <div className="absolute top-2 right-2 border border-brass-500/60 bg-ink-900 px-3 py-1.5 font-almanac text-[11px] tracking-label text-paper-100">
                       {format.tag}
                     </div>
                   )}

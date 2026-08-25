@@ -104,8 +104,23 @@ export default function RoomToEverything() {
         {/* Contrappunto ironico ai "numeroni": una nota a margine, non un
             settimo KPI — per questo fuori dalla fascia (Reveal a parte,
             un solo filo di testo) invece che dentro la griglia insieme
-            agli altri sei. */}
-        <Reveal delayMs={420} className="mt-6">
+            agli altri sei. Sopra, un settimo numero che non c'è mai stato:
+            stessa tipografia delle statistiche ma sbiadito cifra per
+            cifra, come un timbro d'inchiostro consumato — l'idea è "il
+            conteggio esiste, solo che nessuno l'ha mai finito di leggere".
+            aria-hidden: è decorazione, una stringa senza significato non
+            va letta da uno screen reader. */}
+        <div
+          aria-hidden="true"
+          className="mt-6 text-center font-display text-[clamp(1.875rem,1.4rem+2vw,3rem)] leading-none tracking-[0.04em] text-ink-900"
+        >
+          <span className="opacity-[0.38]">4</span>
+          <span className="opacity-[0.09]">7</span>
+          <span className="opacity-[0.42]">2</span>
+          <span className="opacity-[0.05]">9</span>
+          <span className="opacity-[0.27]">1</span>
+        </div>
+        <Reveal delayMs={420} className="mt-2">
           <span className="font-almanac text-[13px] tracking-kicker text-brass-500">Enigmi e jumpscare</span>
           <p className="mt-1 text-sm text-ink-700">Non li abbiamo contati. Era meglio così.</p>
         </Reveal>

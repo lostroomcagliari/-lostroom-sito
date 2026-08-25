@@ -25,14 +25,20 @@ export default function FramedKicker({ children, tone = 'ink', className = '', s
   return (
     <div className={`inline-block border border-brass-500/70 p-[5px] ${className}`} style={style}>
       <div className="flex items-center gap-2.5 border-[3px] border-double border-brass-500/60 px-4 py-2.5 sm:gap-4 sm:px-6">
+        {/* ︎ (variation selector-15) forza la resa testuale: senza,
+            iOS Safari renderizza ✳ (U+2733) come emoji verde invece che
+            come semplice asterisco. */}
         <span aria-hidden className="shrink-0 text-xs text-brass-500">
-          ✳
+          ✳︎
         </span>
         <span className={`font-almanac text-[11px] tracking-[0.16em] sm:text-xs sm:tracking-kicker ${textColor}`}>
           {children}
         </span>
+        {/* ︎ (variation selector-15) forza la resa testuale: senza,
+            iOS Safari renderizza ✳ (U+2733) come emoji verde invece che
+            come semplice asterisco. */}
         <span aria-hidden className="shrink-0 text-xs text-brass-500">
-          ✳
+          ✳︎
         </span>
       </div>
     </div>
