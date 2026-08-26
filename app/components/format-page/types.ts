@@ -52,6 +52,15 @@ export interface Edition {
   replicas: string
   players: string
   photo?: { src?: string; label: string }
+  /** Retro della scheda: la card gira al passaggio del mouse (desktop con
+   * hover reale) o al tap/click (touch e da tastiera) e mostra
+   * l'approfondimento narrativo dell'edizione. Opzionale: senza `back` la
+   * scheda resta semplicemente statica, front-only. */
+  back?: {
+    /** "2018 · CAGLIARI" — anno e location, sopra il titolo sul retro. */
+    badge: string
+    lines: CopyLine[]
+  }
 }
 
 export interface FaqItem {
@@ -153,9 +162,17 @@ export interface FormatPageContent {
 
   faq: {
     heading: string
-    placeholderBadge: string
+    /** Solo mentre le risposte sono ancora segnaposto — badge "testi in
+     * arrivo" accanto al titolo. Omesso quando le risposte sono reali. */
+    placeholderBadge?: string
     items: FaqItem[]
   }
+
+  /** Video professionale che apre l'Archivio, subito dopo "Gira pagina" —
+   * approfondimento, non informazione essenziale, per questo vive qui e non
+   * nel Bignami. Opzionale: senza `archivioVideo` l'Archivio comincia
+   * direttamente con "Come è nata". */
+  archivioVideo?: { eyebrow: string; videoId: string; title: string }
 
   crossLinks: {
     heading: string

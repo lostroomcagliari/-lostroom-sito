@@ -3,6 +3,7 @@ import Button from '../Button'
 import FramedKicker from '../FramedKicker'
 import ImagePlaceholder from '../ImagePlaceholder'
 import Reveal from '../Reveal'
+import YouTubeEmbed from '../YouTubeEmbed'
 import CopyBlock from './CopyBlock'
 import EditionCard from './EditionCard'
 import Faq from './Faq'
@@ -30,8 +31,21 @@ function dictateDelay(step: number) {
  * vista) → L'archivio (approfondimento narrativo) → FAQ → altri format.
  */
 export default function FormatPageTemplate({ content }: { content: FormatPageContent }) {
-  const { hero, opening, bignami, archivioIntro, origin, howToPlay, universe, editions, stats, nextPlace, faq, crossLinks } =
-    content
+  const {
+    hero,
+    opening,
+    bignami,
+    archivioIntro,
+    archivioVideo,
+    origin,
+    howToPlay,
+    universe,
+    editions,
+    stats,
+    nextPlace,
+    faq,
+    crossLinks,
+  } = content
 
   return (
     <>
@@ -39,7 +53,14 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
       <section aria-label={`Apertura — ${hero.title}`}>
         <div className="relative min-h-[460px] w-full overflow-hidden bg-ink-800 sm:min-h-[560px] lg:min-h-[640px]">
           <div className="absolute inset-0">
-            <ImagePlaceholder label={hero.photo.label} src={hero.photo.src} className="h-full w-full" sizes="100vw" hideCaption />
+            <ImagePlaceholder
+              label={hero.photo.label}
+              src={hero.photo.src}
+              className="h-full w-full"
+              sizes="100vw"
+              hideCaption
+              imageClassName="filter-vintage"
+            />
           </div>
           <div
             aria-hidden
@@ -181,6 +202,18 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
         </Reveal>
       </div>
 
+      {/* ══ IL VIDEO — apre l'Archivio, prima di "come è nata" ══ */}
+      {archivioVideo && (
+        <div className="bg-ink-900 px-5 pb-10 sm:px-10 sm:pb-16">
+          <Reveal className="mx-auto max-w-[880px]">
+            <div className="mb-4 text-center font-almanac text-[13px] tracking-kicker text-brass-500">
+              {archivioVideo.eyebrow}
+            </div>
+            <YouTubeEmbed videoId={archivioVideo.videoId} title={archivioVideo.title} />
+          </Reveal>
+        </div>
+      )}
+
       {/* ══ ARCHIVIO 01 — come è nata ══ */}
       <section aria-label={origin.heading} className="bg-ink-900 pb-10 sm:pb-16">
         <div className="relative">
@@ -226,7 +259,13 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
               <CopyBlock lines={howToPlay.lines} bg="dark" />
             </Reveal>
             <Reveal delayMs={120} className="relative self-start">
-              <ImagePlaceholder label={howToPlay.photo.label} src={howToPlay.photo.src} aspect="4 / 5" hideCaption />
+              <ImagePlaceholder
+                label={howToPlay.photo.label}
+                src={howToPlay.photo.src}
+                aspect="4 / 5"
+                hideCaption
+                imageClassName="filter-vintage"
+              />
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_42%,transparent_32%,rgb(20_17_15/0.66)_100%)]"
@@ -377,9 +416,11 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
             <h2 className="font-display text-[clamp(1.75rem,1.3rem+1.8vw,3.375rem)] leading-none text-paper-100">
               {faq.heading}
             </h2>
-            <span className="ml-auto border border-seal-600/50 bg-seal-600/15 px-3 py-1.5 font-almanac text-[12px] tracking-label text-seal-600">
-              {faq.placeholderBadge}
-            </span>
+            {faq.placeholderBadge && (
+              <span className="ml-auto border border-seal-600/50 bg-seal-600/15 px-3 py-1.5 font-almanac text-[12px] tracking-label text-seal-600">
+                {faq.placeholderBadge}
+              </span>
+            )}
           </Reveal>
           <div className="mt-8">
             <Faq items={faq.items} />

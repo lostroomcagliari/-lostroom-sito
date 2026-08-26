@@ -3,9 +3,8 @@ import type { FormatPageContent } from '../../components/format-page/types'
 /**
  * Contenuti reali di /format/adventure-night — testi approvati nel mockup
  * Claude Design "Lost Room - Adventure Night (standalone)" (docs/reference),
- * riportati parola per parola. Le uniche eccezioni sono segnalate inline:
- * le 4 risposte FAQ restano il segnaposto già presente nel mockup originale
- * (in attesa dei testi definitivi — CLAUDE.md vieta di inventarli).
+ * riportati parola per parola, incluse le 8 risposte FAQ e il testo di ogni
+ * retro-scheda delle edizioni passate.
  */
 const content: FormatPageContent = {
   slug: 'adventure-night',
@@ -14,7 +13,9 @@ const content: FormatPageContent = {
     eyebrow: "UN FORMAT ORIGINALE LOST ROOM · GIOCO D'AZIONE · DAL 2018",
     title: 'Adventure Night',
     lead: 'Di notte. Con una torcia. Dove normalmente non giocheresti.',
-    photo: { label: "Foto d'apertura — squadra con torce, notte, luogo reale" },
+    // Stessa foto e didascalia già usate per Adventure Night in
+    // FormatSection.tsx (Home).
+    photo: { src: '/foto/1.png', label: 'Adventure Night, squadra in esplorazione tra le rovine di notte' },
   },
 
   opening: {
@@ -106,6 +107,12 @@ const content: FormatPageContent = {
     accent: 'Sotto ci sono le storie dietro le storie.',
   },
 
+  archivioVideo: {
+    eyebrow: 'ARCHIVIO · IL VIDEO',
+    videoId: 'WICkuxj-4sk',
+    title: 'Adventure Night a Nora — il video',
+  },
+
   origin: {
     eyebrow: 'ARCHIVIO · COME È NATA',
     heading: 'Tutto è cominciato da alcune stanze a cielo aperto.',
@@ -153,7 +160,11 @@ const content: FormatPageContent = {
       { text: 'E il luogo non è semplicemente uno sfondo, è tutto: profumi, suoni, atmosfera.', type: 'accent' },
       { text: 'Ci si muove rispettando gli spazi che attraversiamo e, quando giochiamo in ambienti naturali, anche le specie botaniche e animali che li abitano.' },
     ],
-    photo: { label: 'Foto — un checkpoint, torce sul dettaglio', caption: 'Checkpoint' },
+    photo: {
+      src: '/foto/Adv-checkpoint.png',
+      label: 'Checkpoint notturno tra gli scavi di Nora, lanterna e bauli di gioco davanti al mare',
+      caption: 'Checkpoint',
+    },
     weather: {
       kicker: 'LA VARIABILE CHE NON POSSIAMO PROGRAMMARE',
       title: 'Il meteo.',
@@ -190,13 +201,49 @@ const content: FormatPageContent = {
     eyebrow: 'ARCHIVIO · CINQUE EDIZIONI, 2018 → 2025',
     heading: 'Le notti che abbiamo attraversato, le avventure che abbiamo vissuto.',
     items: [
-      { year: '2018', title: 'Villa di Tigellio', location: 'Cagliari', replicas: '15', players: '450' },
+      {
+        year: '2018',
+        title: 'Villa di Tigellio',
+        location: 'Cagliari',
+        replicas: '15',
+        players: '450',
+        // Nessuna foto d'archivio ancora disponibile per questa edizione:
+        // resta il segnaposto finché non arriva uno scatto reale.
+        back: {
+          badge: '2018 · Cagliari',
+          lines: [
+            {
+              text: 'Un viaggio nel tempo ai primi del Novecento, dopo la campagna di scavi ottocentesca del canonico Giovanni Spano e prima della ripresa delle indagini negli anni Sessanta.',
+            },
+            {
+              text: 'Gli scavi sono fermi da anni e nessuno sembra sapere davvero perché.\nQualcuno parla di misteriose presenze femminili. Qualcun altro di una maledizione.',
+            },
+            { text: 'Naturalmente siamo andati a controllare.', type: 'accent', tone: 'seal' },
+          ],
+        },
+      },
       {
         year: '2019',
         title: 'Escape the Museum',
         location: "Galleria Comunale d'Arte e Giardini Pubblici, Cagliari",
         replicas: '3',
         players: '350',
+        photo: {
+          src: '/foto/Adv-Museum.png',
+          label: 'Scena del crimine alla Escape the Museum, corpo e nastro della polizia davanti a una statua',
+        },
+        back: {
+          badge: '2019 · Cagliari',
+          lines: [
+            { text: 'Una vera notte al museo.', type: 'accent', tone: 'seal' },
+            {
+              text: "Tra le opere della Collezione Ingrao sono nascosti codici e indizi lasciati da un esperto crittografo sulle tracce di un'organizzazione segreta.",
+            },
+            {
+              text: "Da qualche parte c'è una bomba capace di colpire il centro di Cagliari.\nRestava soltanto da capire dove.",
+            },
+          ],
+        },
       },
       {
         year: '2021',
@@ -204,14 +251,72 @@ const content: FormatPageContent = {
         location: 'Parco Naturale Regionale Molentargius-Saline',
         replicas: '4',
         players: '400',
+        photo: {
+          src: '/foto/Adv-Molentargius.png',
+          label: 'Polaroid della creatura di Molentargius, tenuta in mano al buio',
+        },
+        back: {
+          badge: '2021 · Parco naturale',
+          lines: [
+            {
+              text: "Un esperimento sfuggito di mano in un laboratorio all'altro capo del mondo, ha creato qualcosa che ora si aggira tra le zone umide della laguna.",
+            },
+            {
+              text: "La missione è chiara: raccogliere le prove dell'esistenza della creatura e denunciare il caso.",
+            },
+          ],
+        },
       },
-      { year: '2022', title: 'SHARPER Night', location: 'Orto Botanico di Cagliari', replicas: '2', players: '400' },
+      {
+        year: '2022',
+        title: 'SHARPER Night',
+        location: 'Orto Botanico di Cagliari',
+        replicas: '2',
+        players: '400',
+        photo: {
+          src: '/foto/Adv_Sharper.png',
+          label: "La valigetta con il conto alla rovescia di SHARPER Night, tra le piante dell'Orto Botanico",
+        },
+        back: {
+          badge: '2022 · Orto botanico',
+          lines: [
+            {
+              text: 'Durante la Notte Europea dei Ricercatori, uno scienziato pazzo rifiutato dalla comunità scientifica minaccia di diffondere un nuovo potentissimo virus.',
+            },
+            {
+              text: "Per fermarlo bisogna superare una sequenza di enigmi legati a 20 ricerche reali dell'Università degli Studi di Cagliari.",
+            },
+            {
+              text: 'Quella sera la ricerca scientifica non era qualcosa da ascoltare in uno stand. Era qualcosa da usare per salvare il mondo.',
+              type: 'accent',
+              tone: 'seal',
+            },
+          ],
+        },
+      },
       {
         year: '2024–2025',
         title: 'La maledizione di Noranji',
         location: 'Area Archeologica di Nora',
         replicas: '18',
         players: 'oltre 600',
+        photo: { src: '/foto/Adv-Noranji.png', label: 'Creatura cornuta di Nora, La maledizione di Noranji' },
+        back: {
+          badge: '2024–2025 · Nora',
+          lines: [
+            {
+              text: 'Durante una campagna di scavi viene ritrovata una scatola contenente un antico gioco da tavolo.\nAprirla, naturalmente, non era una buona idea.',
+            },
+            {
+              text: 'Nora si trasforma in un gigantesco playground popolato da creature, avventurieri e prove da superare.',
+            },
+            {
+              text: 'Per spezzare la maledizione esiste una sola possibilità:\ngiocare la partita fino alla fine.',
+              type: 'accent',
+              tone: 'seal',
+            },
+          ],
+        },
       },
     ],
     closingOrnament: { src: '/ornaments/romano.png', width: 1210, height: 2442, contrast: 'on-dark' },
@@ -247,24 +352,46 @@ const content: FormatPageContent = {
 
   faq: {
     heading: 'Domande frequenti',
-    placeholderBadge: 'Segnaposto — testi in arrivo',
     items: [
       {
         question: 'Serve esperienza con le escape room per partecipare?',
         answer:
-          '[Testo segnaposto — in attesa della risposta definitiva. Questo paragrafo esiste solo per mostrare spaziatura, misura di riga e animazione di apertura del componente.]',
+          'No. Se hai già giocato qualche escape room riconoscerai alcune dinamiche, ma non è necessario avere esperienza. Gli enigmi sono pensati per essere affrontati in squadra e durante il percorso contano soprattutto osservazione, intuito, collaborazione e voglia di provare. Insomma: non serve essere escapers professionisti. Anche perché non esistono.',
       },
       {
-        question: 'Posso partecipare da solo o con i bambini?',
-        answer: '[Testo segnaposto — in attesa della risposta definitiva.]',
+        question: 'Fa paura?',
+        answer:
+          'Dipende un po\' dall\'edizione, ma in generale Adventure Night non è un\'esperienza horror. C\'è il buio, ci si muove con le torce, alcune storie possono avere atmosfere misteriose o inquietanti e ogni tanto può capitare qualche momento di tensione. Più che paura, cerchiamo quella sensazione in cui ti guardi intorno un po\' meglio del solito e pensi: "Ok. Ma cosa c\'è dietro quel cespuglio?" Se un\'edizione prevede contenuti più intensi, effetti a sorpresa o elementi che potrebbero non essere adatti a tutti, lo diciamo sempre prima della prenotazione.',
+      },
+      {
+        question: 'Devo venire con una squadra già formata?',
+        answer:
+          'Non necessariamente. Puoi partecipare con il tuo team oppure, quando la formula dell\'evento lo prevede, iscriverti anche da solo o in pochi e giocare all\'interno di una squadra mista con altri partecipanti. Se invece un\'edizione richiede l\'iscrizione di una squadra completa, lo specifichiamo chiaramente prima della prenotazione.',
+      },
+      {
+        question: 'Posso partecipare con i bambini?',
+        answer:
+          "Dipende dall'edizione, dalla location e dal tipo di percorso. Alcune Adventure Night sono adatte anche alle famiglie, altre prevedono un'età minima o richiedono che i minori partecipino insieme a un adulto. Ogni volta indichiamo chiaramente età consigliata, eventuali limiti e condizioni di partecipazione.",
+      },
+      {
+        question: 'Serve essere allenati?',
+        answer:
+          'No, ma bisogna mettere in conto di camminare, stare in piedi e muoversi per buona parte della durata del gioco. La difficoltà fisica cambia molto in base alla location: un museo non è un parco naturale e un sito archeologico non è un giardino urbano. Se ci sono dislivelli, terreni irregolari, percorsi lunghi o altre condizioni particolari, lo segnaliamo prima.',
+      },
+      {
+        question: 'Il gioco è accessibile a tutti?',
+        answer:
+          'Dipende soprattutto dal luogo che ospita l\'Adventure Night. Cerchiamo di rendere il percorso il più accessibile possibile, ma alcuni siti archeologici, parchi o spazi naturali possono avere barriere, terreni irregolari o zone non adatte a tutte le persone. Preferiamo dirlo chiaramente prima, piuttosto che promettere un\'accessibilità che la location non può garantire.',
       },
       {
         question: 'Cosa succede se piove?',
-        answer: '[Testo segnaposto — in attesa della risposta definitiva.]',
+        answer:
+          'Dipende dalla pioggia. Le Adventure Night si giocano anche con condizioni atmosferiche non perfette, purché siano sicure: fresco, vento, umidità o qualche goccia possono diventare parte dell\'avventura. Se invece il meteo può rappresentare un rischio per i partecipanti, l\'esperienza viene modificata, rinviata o sospesa. Il meteo, quando collabora, è uno dei nostri effetti speciali premium.',
       },
       {
         question: 'Come si prenota e cosa comprende il biglietto?',
-        answer: '[Testo segnaposto — in attesa della risposta definitiva.]',
+        answer:
+          "Cambia da un'edizione all'altra. Quando l'Adventure Night è a pagamento, nella pagina dell'evento trovi sempre prezzo, modalità di prenotazione e cosa comprende il ticket. In alcuni casi il biglietto include anche l'ingresso al sito o alla struttura che ospita il gioco. Quando invece l'evento fa parte di un progetto culturale, territoriale o istituzionale, la partecipazione può essere completamente gratuita.",
       },
     ],
   },
