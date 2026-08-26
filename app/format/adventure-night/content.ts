@@ -270,7 +270,12 @@ const content: FormatPageContent = {
   },
 
   crossLinks: {
-    heading: 'Gli altri format Lost Room',
+    // "Gli altri format" non è più accurata: Addii al Nubilato è una
+    // verticale commerciale, non un format. "Il resto del mondo Lost
+    // Room" riprende la stessa espressione già usata in EditorialNote.tsx
+    // ("c'è un po' tutto il mondo Lost Room") invece di inventarne una
+    // nuova.
+    heading: 'Il resto del mondo Lost Room',
     items: [
       {
         name: 'Cena con Delitto',
@@ -289,9 +294,34 @@ const content: FormatPageContent = {
       },
       {
         name: 'Team Building',
+        // La battuta stava in overlay sulla foto (una polaroid con
+        // didascalia stampata sopra, coerente in Verticals.tsx ma non qui
+        // dove le card devono restare uniformi): torna testo normale.
+        // Foto: /foto/team-building.png è la polaroid intera (cornice +
+        // didascalia stampate nel file, usata così com'è in Verticals.tsx);
+        // team-building-photo.png è lo stesso scatto raddrizzato e
+        // ritagliato sul solo gruppo, generato per questa card dove serve
+        // una foto pulita in 3:4 senza cornice.
+        tagline: 'E se ci fosse un attacco hacker con il team bloccato in ufficio?',
         cta: 'Scopri il team building',
         href: '/#team-building',
-        photo: { src: '/foto/team-building.png', label: 'Team building Lost Room, colleghi al lavoro sotto pressione' },
+        photo: {
+          src: '/foto/team-building-photo.png',
+          label: 'Team building Lost Room, colleghi al lavoro sotto pressione',
+          // Il gruppo al tavolo occupa il lato sinistro della foto: senza
+          // spostare il punto di ritaglio, "object-cover" a 3:4 lo taglia
+          // a metà e centra sul corridoio vuoto in mezzo.
+          objectPosition: '20% center',
+        },
+      },
+      {
+        name: 'Addii al Nubilato',
+        cta: 'Scopri gli addii Lost Room',
+        href: '/#addii',
+        // /foto/nubilato.png è la prima pagina di giornale intera, usata
+        // così in Verticals.tsx; nubilato-photo.png è lo stesso scatto
+        // raddrizzato e ritagliato sul solo gruppo, per questa card.
+        photo: { src: '/foto/nubilato-photo.png', label: 'Addio al nubilato Lost Room, gruppo di amiche in gioco' },
       },
     ],
   },

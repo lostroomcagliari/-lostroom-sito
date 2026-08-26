@@ -61,9 +61,20 @@ export interface FaqItem {
 
 export interface CrossLink {
   name: string
+  /** Riga breve sotto il titolo, solo per chi ne ha bisogno (es. Team
+   * Building: una foto già "raccontata" da una battuta che prima stava in
+   * overlay sulla foto stessa, spostata qui come testo normale). */
+  tagline?: string
   cta: string
   href: string
-  photo?: { src?: string; label: string }
+  photo?: {
+    src?: string
+    label: string
+    /** object-position CSS quando il soggetto della foto non è centrato
+     * (es. una polaroid ruotata: va scelto un punto che eviti la cornice
+     * bianca e la didascalia stampata nella foto). */
+    objectPosition?: string
+  }
 }
 
 export interface FormatPageContent {

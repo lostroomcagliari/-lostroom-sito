@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
+import type { CSSProperties } from 'react'
 
 interface ImagePlaceholderProps {
   /** Cosa mostrerà la foto reale, es. "giocatori al buio, luce sui volti".
@@ -41,6 +42,14 @@ interface ImagePlaceholderProps {
    * CSS (es. "filter-vintage") che deve toccare solo il pixel della foto,
    * non i suoi overlay (bordo, vignetta, cornice). */
   imageClassName?: string
+  /** Stile inline sull'<Image>: serve per object-position quando il
+   * soggetto di una foto reale non è centrato (es. object-cover che
+   * altrimenti taglierebbe il punto sbagliato). Uno style inline invece di
+   * una classe object-[...] generata a runtime: quel valore arriva da un
+   * content.ts, quindi la stringa completa della classe non esiste da
+   * nessuna parte nel codice sorgente e lo scanner statico di Tailwind non
+   * la genererebbe mai. */
+  imageStyle?: CSSProperties
 }
 
 /**
@@ -73,6 +82,7 @@ export default function ImagePlaceholder({
   src,
   sizes = '(min-width: 1024px) 45vw, 90vw',
   imageClassName = '',
+  imageStyle,
 }: ImagePlaceholderProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
@@ -100,7 +110,16 @@ export default function ImagePlaceholder({
       style={aspect ? { aspectRatio: aspect } : undefined}
     >
       <div className={`reveal-item-image ${visible ? 'is-visible' : ''} absolute inset-0`}>
-        {src && <Image src={src} alt={label} fill sizes={sizes} className={`object-cover ${imageClassName}`} />}
+        {src && (
+          <Image
+            src={src}
+            alt={label}
+            fill
+            sizes={sizes}
+            className={`object-cover ${imageClassName}`}
+            style={imageStyle}
+          />
+        )}
         <div className="absolute inset-0 border border-paper-100/10" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgb(169_126_60/0.14),transparent_60%)]" />
         {framed && (

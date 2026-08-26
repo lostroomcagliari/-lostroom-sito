@@ -393,24 +393,25 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
           <Reveal className="border-b border-paper-100/25 pb-3 font-almanac text-[13px] tracking-kicker text-brass-500">
             {crossLinks.heading}
           </Reveal>
-          <div className="mt-8 grid gap-8 sm:grid-cols-3">
+          {/* 2 colonne sotto, 4 in fila solo da lg in su: sotto lg quattro
+              card 3:4 non hanno spazio per restare leggibili affiancate. */}
+          <div className="mt-8 grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4">
             {crossLinks.items.map((link, i) => (
-              <Reveal key={link.name} delayMs={i * 120}>
-                <div className="relative">
+              <Reveal key={link.name} delayMs={i * 100}>
+                <div className="relative border border-brass-500/60 p-2">
                   <ImagePlaceholder
                     label={link.photo?.label ?? link.name}
                     src={link.photo?.src}
-                    aspect="16 / 10"
+                    aspect="3 / 4"
+                    framed
                     imageClassName="filter-vintage"
-                  />
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 bg-linear-to-t from-ink-900/80 to-transparent to-60%"
+                    imageStyle={link.photo?.objectPosition ? { objectPosition: link.photo.objectPosition } : undefined}
                   />
                 </div>
-                <h3 className="mt-3.5 font-display text-[clamp(1.3125rem,1.1rem+0.6vw,1.75rem)] text-paper-100">
+                <h3 className="mt-3.5 font-display text-[clamp(1.1875rem,1rem+0.6vw,1.75rem)] text-paper-100">
                   {link.name}
                 </h3>
+                {link.tagline && <p className="mt-1.5 text-pretty text-base text-paper-100/70">{link.tagline}</p>}
                 <Link
                   href={link.href}
                   className="mt-2.5 inline-flex min-h-11 items-center border-b border-brass-500/45 pb-1 font-almanac text-[13px] tracking-label text-brass-500 transition-colors duration-150 ease-out hover:border-paper-100 hover:text-paper-100"
