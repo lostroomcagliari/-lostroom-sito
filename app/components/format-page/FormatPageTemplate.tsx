@@ -159,7 +159,7 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
                 {bignami.datesBridge.cta.label}
               </Button>
             </div>
-            <div className="min-w-0 flex-1 basis-[200px] self-stretch">
+            <div className="flex min-w-0 flex-1 basis-[200px] justify-center">
               <Ornament spec={bignami.ornament} fit="height" className="max-h-[220px]" />
             </div>
           </Reveal>
@@ -247,7 +247,7 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
                 </p>
                 <CopyBlock lines={howToPlay.weather.lines} bg="dark" className="mt-3" />
               </div>
-              <div className="min-w-0 flex-1 basis-[180px] self-stretch">
+              <div className="flex min-w-0 flex-1 basis-[180px] justify-center">
                 <Ornament spec={howToPlay.weather.ornament} fit="height" className="max-h-[240px]" />
               </div>
             </div>
@@ -258,13 +258,20 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
       {/* ══ ARCHIVIO 03 — l'universo narrativo (velvet, unica sezione della pagina) ══ */}
       <section aria-label={universe.heading} className="bg-velvet-700 px-5 py-14 text-paper-100 sm:px-10 sm:py-20">
         <div className="mx-auto grid max-w-[1440px] gap-10 sm:grid-cols-2 sm:gap-16">
-          <Reveal>
+          <Reveal className="flex h-full flex-col">
             <div className="font-almanac text-[13px] tracking-kicker text-paper-300">{universe.eyebrow}</div>
             <h2 className="mt-3.5 max-w-[20ch] text-balance font-display text-[clamp(1.75rem,1.3rem+2vw,3.625rem)] leading-[1.05] text-paper-100">
               {universe.heading}
             </h2>
-            <div className="mt-8 w-full max-w-[380px]">
-              <Ornament spec={universe.ornament} fit="width" />
+            {/* flex-1 + items-center: la bussola non resta ancorata subito
+                sotto il titolo, si centra nello spazio verticale che resta
+                libero fino in fondo alla colonna (spesso più alta del testo
+                a sinistra, colonna del testo a destra è tipicamente più
+                lunga). */}
+            <div className="mt-8 flex flex-1 items-center">
+              <div className="w-full max-w-[380px]">
+                <Ornament spec={universe.ornament} fit="width" />
+              </div>
             </div>
           </Reveal>
           <Reveal delayMs={120}>
@@ -318,7 +325,7 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
               {stats.quote}
             </p>
           </Reveal>
-          <Reveal delayMs={150} className="min-w-0 flex-1 basis-[150px] self-stretch">
+          <Reveal delayMs={150} className="flex min-w-0 flex-1 basis-[150px] justify-center">
             <Ornament spec={stats.ornament} fit="height" className="max-h-[260px]" />
           </Reveal>
         </div>
@@ -331,16 +338,21 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
         className="scroll-mt-[150px] bg-paper-200 px-5 py-14 text-ink-900 sm:px-10 sm:py-20"
       >
         <div className="mx-auto grid max-w-[1440px] gap-10 sm:grid-cols-2 sm:gap-16">
-          <Reveal>
+          <Reveal className="flex h-full flex-col">
             <div className="font-almanac text-[13px] tracking-kicker text-seal-600">{nextPlace.eyebrow}</div>
             <h2 className="mt-3.5 max-w-[16ch] font-display text-[clamp(1.875rem,1.4rem+2.4vw,4.125rem)] leading-none text-ink-900">
               {nextPlace.heading}
             </h2>
             {/* Mappamondo: unica incisione del template a dimensione
                 contenuta, non "riempi lo spazio" — deve restare vicino al
-                blocco di testo, non torreggiare sopra il link qui sotto. */}
-            <div className="mt-6 w-28 sm:w-32">
-              <Ornament spec={nextPlace.ornament} fit="width" />
+                blocco di testo, non torreggiare sopra il link qui sotto.
+                flex-1 + items-center: si centra nello spazio verticale
+                libero sotto il titolo (la colonna a destra, con
+                paragrafi/CTA/link, è tipicamente più alta). */}
+            <div className="mt-6 flex flex-1 items-center">
+              <div className="w-28 sm:w-32">
+                <Ornament spec={nextPlace.ornament} fit="width" />
+              </div>
             </div>
           </Reveal>
           <Reveal delayMs={120}>
@@ -385,7 +397,12 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
             {crossLinks.items.map((link, i) => (
               <Reveal key={link.name} delayMs={i * 120}>
                 <div className="relative">
-                  <ImagePlaceholder label={link.photo?.label ?? link.name} src={link.photo?.src} aspect="16 / 10" />
+                  <ImagePlaceholder
+                    label={link.photo?.label ?? link.name}
+                    src={link.photo?.src}
+                    aspect="16 / 10"
+                    imageClassName="filter-vintage"
+                  />
                   <div
                     aria-hidden
                     className="pointer-events-none absolute inset-0 bg-linear-to-t from-ink-900/80 to-transparent to-60%"

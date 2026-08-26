@@ -272,9 +272,27 @@ const content: FormatPageContent = {
   crossLinks: {
     heading: 'Gli altri format Lost Room',
     items: [
-      { name: 'Cena con Delitto', cta: 'Entra nella storia', href: '/#format' },
-      { name: 'Mystery Dinner', cta: 'Inizia a indagare', href: '/#format' },
-      { name: 'Team Building', cta: 'Scopri il team building', href: '/#team-building' },
+      {
+        name: 'Cena con Delitto',
+        cta: 'Entra nella storia',
+        href: '/#format',
+        // Stessa foto e didascalia già usate per Cena con Delitto in
+        // FormatSection.tsx (Home) — un solo scatto reale, non uno per
+        // sezione.
+        photo: { src: '/foto/2.png', label: 'Scena del delitto Lost Room, vista dall’alto delle scale' },
+      },
+      {
+        name: 'Mystery Dinner',
+        cta: 'Inizia a indagare',
+        href: '/#format',
+        photo: { src: '/foto/3.png', label: 'Prove sul tavolo di una Mystery Dinner Lost Room' },
+      },
+      {
+        name: 'Team Building',
+        cta: 'Scopri il team building',
+        href: '/#team-building',
+        photo: { src: '/foto/team-building.png', label: 'Team building Lost Room, colleghi al lavoro sotto pressione' },
+      },
     ],
   },
 }

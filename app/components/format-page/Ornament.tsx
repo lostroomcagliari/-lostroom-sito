@@ -3,8 +3,13 @@ import type { OrnamentSpec } from './types'
 
 interface OrnamentProps {
   spec: OrnamentSpec
-  /** "height": l'immagine riempie l'altezza del suo contenitore (riga
-   * flex affiancata al testo) — w-auto, object-contain.
+  /** "height": dimensione naturale, contenuta in altezza dal max-h-* che il
+   * chiamante passa in className — per le incisioni affiancate a un blocco
+   * di testo più alto di loro, dentro una riga flex con items-center: qui
+   * NON deve riempire/stirarsi fino all'altezza del testo (altrimenti
+   * l'immagine si deforma o resta ancorata in alto con vuoto sotto), deve
+   * restare alla sua dimensione e lasciare che il centraggio verticale lo
+   * faccia il contenitore.
    * "width": l'immagine riempie la larghezza della sua colonna — l'uso più
    * comune (bussola, romano, la maggior parte dei casi). Il dimensionamento
    * vero e proprio resta comunque al chiamante, via il wrapper attorno a
@@ -30,7 +35,7 @@ interface OrnamentProps {
 export default function Ornament({ spec, fit = 'width', className = '' }: OrnamentProps) {
   const treatment =
     spec.contrast === 'on-dark' ? 'invert' : spec.contrast === 'on-light' ? 'mix-blend-multiply' : ''
-  const sizing = fit === 'height' ? 'h-full w-auto object-contain' : 'h-auto w-full'
+  const sizing = fit === 'height' ? 'h-auto w-auto' : 'h-auto w-full'
 
   return (
     <Image
