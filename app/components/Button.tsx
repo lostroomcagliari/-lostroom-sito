@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import type { AnchorHTMLAttributes, ReactNode } from 'react'
 
 type ButtonVariant = 'primary' | 'secondary' | 'tertiary'
@@ -57,7 +58,7 @@ export default function Button({
 }: ButtonProps) {
   if (variant === 'tertiary') {
     return (
-      <a href={href} className={`${base} ${tertiaryText[tone]} ${className}`} {...rest}>
+      <Link href={href} className={`${base} ${tertiaryText[tone]} ${className}`} {...rest}>
         <span className="w-4 shrink-0">
           <Image
             src="/ornaments/mano.png"
@@ -68,13 +69,13 @@ export default function Button({
           />
         </span>
         <span className="border-b border-current pb-0.5">{children}</span>
-      </a>
+      </Link>
     )
   }
 
   return (
-    <a href={href} className={`${base} ${variants[variant][tone]} ${className}`} {...rest}>
+    <Link href={href} className={`${base} ${variants[variant][tone]} ${className}`} {...rest}>
       {children}
-    </a>
+    </Link>
   )
 }

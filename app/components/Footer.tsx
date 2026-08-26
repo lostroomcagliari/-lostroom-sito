@@ -1,18 +1,22 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
+// Href assoluti ("/#…"): il footer vive anche sulle pagine format
+// (/format/adventure-night e le prossime), non più solo in Home — vedi la
+// stessa nota in Header.tsx.
 const EXPLORE_LINKS = [
-  { href: '#format', label: 'Format' },
-  { href: '#addii', label: 'Addii al nubilato' },
-  { href: '#team-building', label: 'Team building' },
-  { href: '#eventi-privati', label: 'Eventi privati' },
-  { href: '#halloween', label: 'Halloween' },
-  { href: '#progetti', label: 'Progetti' },
+  { href: '/#format', label: 'Format' },
+  { href: '/#addii', label: 'Addii al nubilato' },
+  { href: '/#team-building', label: 'Team building' },
+  { href: '/#eventi-privati', label: 'Eventi privati' },
+  { href: '/#halloween', label: 'Halloween' },
+  { href: '/#progetti', label: 'Progetti' },
 ]
 
 const ABOUT_LINKS = [
-  { href: '#chi-siamo', label: 'Chi siamo' },
-  { href: '#eventi', label: 'Prossimi eventi' },
-  { href: '#contatti', label: 'Contatti' },
+  { href: '/#chi-siamo', label: 'Chi siamo' },
+  { href: '/#eventi', label: 'Prossimi eventi' },
+  { href: '/#contatti', label: 'Contatti' },
 ]
 
 // Placeholder: URL social reali da collegare quando disponibili.
@@ -76,25 +80,25 @@ export default function Footer() {
 
         <nav aria-label="Esplora" className="flex flex-col gap-2.5">
           {EXPLORE_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="font-almanac text-[13px] tracking-label text-paper-100/80 transition-colors duration-150 ease-out hover:text-paper-100"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <nav aria-label="Lo studio" className="flex flex-col gap-2.5">
           {ABOUT_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="font-almanac text-[13px] tracking-label text-paper-100/80 transition-colors duration-150 ease-out hover:text-paper-100"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 

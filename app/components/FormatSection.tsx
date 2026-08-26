@@ -36,7 +36,7 @@ const FORMATS: FormatEntry[] = [
       'Il resto dovrete scoprirlo voi.',
     ],
     cta: 'Scopri le Adventure Night',
-    href: '#format',
+    href: '/format/adventure-night',
     photoLabel: 'Adventure Night, squadra in esplorazione tra le rovine di notte',
     photoSrc: '/foto/1.png',
     imageSide: 'left',
