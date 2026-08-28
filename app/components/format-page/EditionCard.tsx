@@ -26,18 +26,21 @@ function supportsHoverFlip() {
 }
 
 /**
- * Scheda di un'edizione passata nell'Archivio — gira mostrando il
- * retro narrativo. Fronte: badge anno + foto (3:4) + titolo + location +
- * repliche/giocatori. Badge in ceralacca (seal-600) su cornice inchiostro
- * — stessa ricetta del badge di genere in FormatSection.tsx, non il
- * brass-su-inchiostro del mockup originale: a 12px su fondo scuro il brass
- * violerebbe "mai come testo sotto 18px su inchiostro"
- * (docs/design-system.md#colori).
+ * Scheda di un'edizione passata nell'Archivio — gira mostrando il retro
+ * narrativo. Fronte (sempre visibile, senza bisogno di flip): badge anno,
+ * foto (3:4), titolo, location, repliche/giocatori in evidenza. Retro (al
+ * flip): badge anno·location, titolo ripetuto, storia dell'edizione,
+ * repliche/giocatori in versione compatta — vedi docs/reference (il
+ * mockup Claude Design è la fonte per questa struttura fronte/retro).
  *
- * Il flip stesso resta quello del mockup: hover lo apre/chiude sui
- * dispositivi con puntatore fine, il click/tap lo alterna sempre (anche
- * da tastiera, invio o spazio) — così resta utilizzabile su touch e con
- * accessibilità da tastiera, non solo passandoci sopra col mouse.
+ * Il fronte vive in flusso normale (non assoluto): è lui a determinare
+ * l'altezza reale della scheda — foto in 3:4 più testo — e il retro,
+ * assoluto con inset-0, si dimensiona di conseguenza. Un'altezza fissa o
+ * "solo min-height" sul contenitore esterno qui romperebbe una delle due
+ * facce: o il fronte (foto 3:4 più alta del limite) o il retro (il
+ * rotatore con h-full non ha un'altezza "definita" da cui partire, vedi
+ * commit precedenti) — lasciare che sia il fronte a dettare l'altezza
+ * evita entrambi i problemi alla radice.
  */
 export default function EditionCard({ edition }: { edition: Edition }) {
   const [flipped, setFlipped] = useState(false)
@@ -51,12 +54,7 @@ export default function EditionCard({ edition }: { edition: Edition }) {
       role="button"
       tabIndex={0}
       aria-label={`${edition.year} — ${edition.title}: gira la scheda`}
-      // h-[480px] fissa, non min-h: il rotatore sotto usa h-full, e una
-      // percentuale si risolve solo contro un'altezza "definita" — con
-      // min-height soltanto il calcolo fallisce, il rotatore collassa a
-      // 0 e il retro (assoluto dentro di lui, con overflow-y-auto) si
-      // richiude sulla sola prima riga di contenuto.
-      className="h-[480px] cursor-pointer overflow-hidden outline-offset-4 [perspective:1600px]"
+      className="cursor-pointer overflow-hidden outline-offset-4 [perspective:1600px]"
       onClick={() => setFlipped((f) => !f)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -68,14 +66,20 @@ export default function EditionCard({ edition }: { edition: Edition }) {
       onMouseLeave={() => supportsHoverFlip() && setFlipped(false)}
     >
       <div
-        className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d]"
+        className="relative transition-transform duration-700 [transform-style:preserve-3d]"
         style={{ transform: flipped ? 'rotateY(180deg)' : 'none' }}
       >
-        <div className="absolute inset-0" style={hiddenBackface}>
+        {/* Fronte: flusso normale, è lui che dà l'altezza alla scheda. */}
+        <div style={hiddenBackface}>
           <CardFront edition={edition} />
         </div>
+        {/* Retro: assoluto, si sovrappone esattamente al fronte. La foto
+            3:4 sul fronte rende la scheda più alta di quanto la storia
+            da sola riempirebbe: flex-col + mt-auto sul footer ancora
+            repliche/giocatori in fondo invece di lasciare uno spazio
+            vuoto casuale sotto il testo. */}
         <div
-          className="absolute inset-0 overflow-y-auto border border-brass-500/35 bg-paper-lines bg-paper-100 p-5 text-ink-900"
+          className="absolute inset-0 flex flex-col overflow-y-auto border border-brass-500/35 bg-paper-lines bg-paper-100 p-5 text-ink-900"
           style={{ ...hiddenBackface, transform: 'rotateY(180deg)' }}
         >
           <div className="font-almanac text-[12px] tracking-label text-seal-600">{edition.back.badge}</div>
@@ -83,7 +87,7 @@ export default function EditionCard({ edition }: { edition: Edition }) {
             {edition.title}
           </h3>
           <CopyBlock lines={edition.back.lines} bg="light" className="mt-3.5 gap-3" />
-          <div className="mt-4 border-t border-ink-900/25 pt-2.5 font-almanac text-[11px] tracking-label text-paper-400">
+          <div className="mt-auto border-t border-ink-900/25 pt-2.5 font-almanac text-[11px] tracking-label text-paper-400">
             {edition.replicas} repliche · {edition.players} giocatori
           </div>
         </div>
@@ -92,9 +96,18 @@ export default function EditionCard({ edition }: { edition: Edition }) {
   )
 }
 
+/**
+ * Fronte della scheda — badge anno + foto (3:4) + titolo + location +
+ * repliche/giocatori, sempre visibile senza bisogno di flip (blocco
+ * essenziale, non un approfondimento: docs/design-system.md). Badge in
+ * ceralacca (seal-600) su cornice inchiostro — stessa ricetta del badge
+ * di genere in FormatSection.tsx, non il brass-su-inchiostro del mockup
+ * originale: a 12px su fondo scuro il brass violerebbe "mai come testo
+ * sotto 18px su inchiostro" (docs/design-system.md#colori).
+ */
 function CardFront({ edition }: { edition: Edition }) {
   return (
-    <div className="flex h-full flex-col border border-brass-500/35 bg-ink-800">
+    <div className="flex flex-col border border-brass-500/35 bg-ink-800">
       <div className="relative border-b border-brass-500/35 p-2">
         <ImagePlaceholder
           label={edition.photo?.label ?? `Edizione ${edition.year} — ${edition.title}`}
@@ -107,12 +120,12 @@ function CardFront({ edition }: { edition: Edition }) {
           {edition.year}
         </div>
       </div>
-      <div className="flex flex-1 flex-col p-4">
+      <div className="p-4">
         <h3 className="font-display text-[clamp(1.25rem,1rem+0.8vw,1.625rem)] leading-[1.1] text-paper-100">
           {edition.title}
         </h3>
         <div className="mt-2 font-almanac text-[12px] tracking-label text-paper-100/60">{edition.location}</div>
-        <div className="mt-auto flex gap-4 border-t border-brass-500/35 pt-3">
+        <div className="mt-3 flex gap-4 border-t border-brass-500/35 pt-3">
           <div>
             <div className="font-display text-2xl leading-none text-paper-100">{edition.replicas}</div>
             <div className="mt-1 font-almanac text-[11px] tracking-label text-brass-500">Repliche</div>

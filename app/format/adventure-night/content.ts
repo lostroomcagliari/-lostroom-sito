@@ -163,7 +163,6 @@ const content: FormatPageContent = {
     photo: {
       src: '/foto/Adv-checkpoint.png',
       label: 'Checkpoint notturno tra gli scavi di Nora, lanterna e bauli di gioco davanti al mare',
-      caption: 'Checkpoint',
     },
     weather: {
       kicker: 'LA VARIABILE CHE NON POSSIAMO PROGRAMMARE',
@@ -421,15 +420,12 @@ const content: FormatPageContent = {
       },
       {
         name: 'Team Building',
-        // La battuta stava in overlay sulla foto (una polaroid con
-        // didascalia stampata sopra, coerente in Verticals.tsx ma non qui
-        // dove le card devono restare uniformi): torna testo normale.
         // Foto: /foto/team-building.png è la polaroid intera (cornice +
         // didascalia stampate nel file, usata così com'è in Verticals.tsx);
         // team-building-photo.png è lo stesso scatto raddrizzato e
         // ritagliato sul solo gruppo, generato per questa card dove serve
-        // una foto pulita in 3:4 senza cornice.
-        tagline: 'E se ci fosse un attacco hacker con il team bloccato in ufficio?',
+        // una foto pulita in 3:4 senza cornice, uniforme alle altre tre
+        // (solo immagine + titolo + CTA, senza testo intermedio).
         cta: 'Scopri il team building',
         href: '/#team-building',
         photo: {

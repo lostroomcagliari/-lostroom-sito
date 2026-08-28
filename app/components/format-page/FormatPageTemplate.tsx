@@ -270,9 +270,6 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
                 aria-hidden
                 className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_42%,transparent_32%,rgb(20_17_15/0.66)_100%)]"
               />
-              <div className="absolute bottom-0 left-0 bg-ink-900 px-3.5 py-2 font-almanac text-[12px] tracking-label text-paper-100">
-                {howToPlay.photo.caption}
-              </div>
             </Reveal>
           </div>
 
@@ -452,7 +449,6 @@ export default function FormatPageTemplate({ content }: { content: FormatPageCon
                 <h3 className="mt-3.5 font-display text-[clamp(1.1875rem,1rem+0.6vw,1.75rem)] text-paper-100">
                   {link.name}
                 </h3>
-                {link.tagline && <p className="mt-1.5 text-pretty text-base text-paper-100/70">{link.tagline}</p>}
                 <Link
                   href={link.href}
                   className="mt-2.5 inline-flex min-h-11 items-center border-b border-brass-500/45 pb-1 font-almanac text-[13px] tracking-label text-brass-500 transition-colors duration-150 ease-out hover:border-paper-100 hover:text-paper-100"

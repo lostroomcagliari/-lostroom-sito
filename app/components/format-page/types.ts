@@ -70,10 +70,6 @@ export interface FaqItem {
 
 export interface CrossLink {
   name: string
-  /** Riga breve sotto il titolo, solo per chi ne ha bisogno (es. Team
-   * Building: una foto già "raccontata" da una battuta che prima stava in
-   * overlay sulla foto stessa, spostata qui come testo normale). */
-  tagline?: string
   cta: string
   href: string
   photo?: {
@@ -125,7 +121,7 @@ export interface FormatPageContent {
     eyebrow: string
     heading: string
     lines: CopyLine[]
-    photo: { src?: string; label: string; caption: string }
+    photo: { src?: string; label: string }
     weather: { kicker: string; title: string; lines: CopyLine[]; ornament: OrnamentSpec }
   }
 
